@@ -38,7 +38,7 @@ GLOBAL_LIST_EMPTY(allRequestConsoles)
 
 /obj/machinery/requests_console
 	name = "Requests Console"
-	desc = "A console intended to send requests to different departments on the station."
+	desc = "Консоль для отправки запросов в различные отделы станции."
 	anchored = TRUE
 	icon = 'icons/obj/terminals.dmi'
 	icon_state = "req_comp0"
@@ -89,10 +89,10 @@ GLOBAL_LIST_EMPTY(allRequestConsoles)
 	Radio.follow_target = src
 	. = ..()
 
-	announcement.title = "[department] announcement"
+	announcement.title = "Уведомление [department]"
 	announcement.newscast = FALSE
 
-	name = "[department] Requests Console"
+	name = "[department] консоль запросов"
 	GLOB.allRequestConsoles += src
 	if(departmentType & RC_ASSIST)
 		GLOB.req_console_assistance |= department
@@ -178,7 +178,7 @@ GLOBAL_LIST_EMPTY(allRequestConsoles)
 			if(reject_bad_text(params["write"]))
 				recipient = params["write"] //write contains the string of the receiving department's name
 
-				var/new_message = sanitize(input("Write your message:", "Awaiting Input", ""))
+				var/new_message = sanitize(input("Напишите своё сообщение:", "Ожидание ввода", ""))
 				if(new_message)
 					message = new_message
 					screen = RCS_MESSAUTH
@@ -193,7 +193,7 @@ GLOBAL_LIST_EMPTY(allRequestConsoles)
 					reset_message(TRUE)
 
 		if("writeAnnouncement")
-			var/new_message = sanitize(input("Write your message:", "Awaiting Input", ""))
+			var/new_message = sanitize(input("Напишите своё сообщение:", "Ожидание ввода", ""))
 			if(new_message)
 				message = new_message
 			else
@@ -235,8 +235,8 @@ GLOBAL_LIST_EMPTY(allRequestConsoles)
 					radiochannel = "AI Private"
 				else if(recipient == "Cargo Bay")
 					radiochannel = "Supply"
-				write_to_message_log("Message sent to [recipient] at [station_time_timestamp()] - [message]")
-				Radio.autosay("Alert; a new requests console message received for [recipient] from [department]", null, "[radiochannel]")
+				write_to_message_log("Отправлено сообщение [recipient] в [station_time_timestamp()] - [message]")
+				Radio.autosay("Внимание; новое сообщение [recipient] из [department]", null, "[radiochannel]")
 			else
 				atom_say("No server detected!")
 
@@ -264,16 +264,16 @@ GLOBAL_LIST_EMPTY(allRequestConsoles)
 		if("printLabel")
 			var/error_message
 			if(!ship_tag_index)
-				error_message = "Please select a destination."
+				error_message = "Выберите пункт назначения."
 			else if(!msgVerified)
-				error_message = "Please verify shipper ID."
+				error_message = "Пожалуйста, подтвердите свой ID."
 			else if(world.time < print_cooldown)
-				error_message = "Please allow the printer time to prepare the next shipping label."
+				error_message = "Позвольте принтеру подготовиться к печати следующей упаковки."
 			if(error_message)
 				atom_say("[error_message]")
 				return
 			print_label(ship_tag_name, ship_tag_index)
-			shipping_log += "Shipping Label printed for [ship_tag_name] - [msgVerified]"
+			shipping_log += "Транспортная упаковка распечатана для [ship_tag_name] - [msgVerified]"
 			reset_message(TRUE)
 
 		//Handle silencing the console
@@ -287,7 +287,7 @@ GLOBAL_LIST_EMPTY(allRequestConsoles)
 			return
 		if(screen == RCS_MESSAUTH)
 			var/obj/item/card/id/T = I
-			msgVerified = "Verified by [T.registered_name] ([T.assignment])"
+			msgVerified = "Подтверждено как [T.registered_name] ([T.assignment])"
 			SStgui.update_uis(src)
 		if(screen == RCS_ANNOUNCE)
 			var/obj/item/card/id/ID = I
@@ -296,18 +296,18 @@ GLOBAL_LIST_EMPTY(allRequestConsoles)
 				announcement.announcer = ID.assignment ? "[ID.assignment] [ID.registered_name]" : ID.registered_name
 			else
 				reset_message()
-				to_chat(user, "<span class='warning'>You are not authorized to send announcements.</span>")
+				to_chat(user, "<span class='warning'>Вы не авторизованы для отправки сообщений.</span>")
 			SStgui.update_uis(src)
 		if(screen == RCS_SHIPPING)
 			var/obj/item/card/id/T = I
-			msgVerified = "Sender verified as [T.registered_name] ([T.assignment])"
+			msgVerified = "Отправитель зарегистрирован как [T.registered_name] ([T.assignment])"
 			SStgui.update_uis(src)
 	if(istype(I, /obj/item/stamp))
 		if(inoperable(MAINT))
 			return
 		if(screen == RCS_MESSAUTH)
 			var/obj/item/stamp/T = I
-			msgStamped = "Stamped with the [T.name]"
+			msgStamped = "Проштамповано [T.name]"
 			SStgui.update_uis(src)
 	else
 		return ..()

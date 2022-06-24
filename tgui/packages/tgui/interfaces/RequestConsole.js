@@ -57,13 +57,13 @@ const MainMenu = (props, context) => {
   if (newmessagepriority === 1) {
     messageInfo = (
       <Box color="red">
-        There are new messages
+        Новые сообщения
       </Box>
     );
   } else if (newmessagepriority === 2) {
     messageInfo = (
       <Box color="red" bold>
-        NEW PRIORITY MESSAGES
+        НОВЫЕ ПРИОРИТЕТНЫЕ СООБЩЕНИЯ
       </Box>
     );
   }
@@ -72,7 +72,7 @@ const MainMenu = (props, context) => {
       {messageInfo}
       <Box mt={2}>
         <Button
-          content="View Messages"
+          content="Просмотреть сообщения"
           icon={newmessagepriority > 0 ? "envelope-open-text" : "envelope"}
           onClick={
             () => act('setScreen', { setScreen: 6 })
@@ -81,7 +81,7 @@ const MainMenu = (props, context) => {
       <Box mt={2}>
         <Box>
           <Button
-            content="Request Assistance"
+            content="Запросить помощь"
             icon="hand-paper"
             onClick={
               () => act('setScreen', { setScreen: 1 })
@@ -89,7 +89,7 @@ const MainMenu = (props, context) => {
         </Box>
         <Box>
           <Button
-            content="Request Supplies"
+            content="Запросить припасы"
             icon="box"
             onClick={
               () => act('setScreen', { setScreen: 2 })
@@ -97,7 +97,7 @@ const MainMenu = (props, context) => {
         </Box>
         <Box>
           <Button
-            content="Relay Anonymous Information"
+            content="Доложить анонимную информацию"
             icon="comment"
             onClick={
               () => act('setScreen', { setScreen: 3 })
@@ -107,7 +107,7 @@ const MainMenu = (props, context) => {
       <Box mt={2}>
         <Box>
           <Button
-            content="Print Shipping Label"
+            content="Распечатать доставочную упаковку"
             icon="tag"
             onClick={
               () => act('setScreen', { setScreen: 9 })
@@ -115,7 +115,7 @@ const MainMenu = (props, context) => {
         </Box>
         <Box>
           <Button
-            content="View Shipping Logs"
+            content="Просмотреть журнал доставки"
             icon="clipboard-list"
             onClick={
               () => act('setScreen', { setScreen: 10 })
@@ -125,7 +125,7 @@ const MainMenu = (props, context) => {
       {!!announcementConsole && (
         <Box mt={2}>
           <Button
-            content="Send Station-Wide Announcement"
+            content="Отправить уведомление по станции"
             icon="bullhorn"
             onClick={
               () => act('setScreen', { setScreen: 8 })
@@ -134,9 +134,9 @@ const MainMenu = (props, context) => {
       )}
       <Box mt={2}>
         <Button
-          content={silent ? "Speaker Off" : "Speaker On"}
+          content={silent ? "Диктофон выключен" : "Диктофон включён"}
           selected={!silent}
-          icon={silent ? "volume-mute" : "volume-up"}
+          icon={silent ? "Звук выключен" : "Звук включён"}
           onClick={
             () => act('toggleSilent')
           } />
@@ -156,21 +156,21 @@ const DepartmentList = (props, context) => {
   switch (props.purpose) {
     case "ASSISTANCE":
       list2iterate = data.assist_dept;
-      sectionTitle = "Request assistance from another department";
+      sectionTitle = "Запрос помощи другого департамента";
       break;
     case "SUPPLIES":
       list2iterate = data.supply_dept;
-      sectionTitle = "Request supplies from another department";
+      sectionTitle = "Запрос ресурсов из другого департамента";
       break;
     case "INFO":
       list2iterate = data.info_dept;
-      sectionTitle = "Relay information to another department";
+      sectionTitle = "доклад информации другому департаменту";
       break;
   }
   return (
     <Section title={sectionTitle} buttons={
       <Button
-        content="Back"
+        content="Обратно"
         icon="arrow-left"
         onClick={
           () => act('setScreen', { setScreen: 0 })
@@ -180,13 +180,13 @@ const DepartmentList = (props, context) => {
         {list2iterate.filter(d => (d !== department)).map(d => (
           <LabeledList.Item key={d} label={d}>
             <Button
-              content="Message"
+              content="Сообщение"
               icon="envelope"
               onClick={
                 () => act('writeInput', { write: d, priority: 1 })
               } />
             <Button
-              content="High Priority"
+              content="Высокий приоритет"
               icon="exclamation-circle"
               onClick={
                 () => act('writeInput', { write: d, priority: 2 })
@@ -204,17 +204,17 @@ const MessageResponse = (props, context) => {
   let sectionTitle;
   switch (props.type) {
     case "SUCCESS":
-      sectionTitle = "Message sent successfully";
+      sectionTitle = "Сообщение успешно отправлено";
       break;
     case "FAIL":
-      sectionTitle = "Request supplies from another department";
+      sectionTitle = "Запрос ресурсов из другого департамента";
       break;
   }
 
   return (
     <Section title={sectionTitle} buttons={
       <Button
-        content="Back"
+        content="Обратно"
         icon="arrow-left"
         onClick={
           () => act('setScreen', { setScreen: 0 })
@@ -231,18 +231,18 @@ const MessageLog = (props, context) => {
   switch (props.type) {
     case "MESSAGES":
       list2iterate = data.message_log;
-      sectionTitle = "Message Log";
+      sectionTitle = "Журнал сообщений";
       break;
     case "SHIPPING":
       list2iterate = data.shipping_log;
-      sectionTitle = "Shipping label print log";
+      sectionTitle = "Журнал печати упаковок";
       break;
   }
 
   return (
     <Section title={sectionTitle} buttons={
       <Button
-        content="Back"
+        content="Обратно"
         icon="arrow-left"
         onClick={
           () => act('setScreen', { setScreen: 0 })
@@ -267,25 +267,25 @@ const MessageAuth = (props, context) => {
   } = data;
 
   return (
-    <Section title="Message Authentication" buttons={
+    <Section title="Идентификация сообщений" buttons={
       <Button
-        content="Back"
+        content="Обратно"
         icon="arrow-left"
         onClick={
           () => act('setScreen', { setScreen: 0 })
         } />
     } >
       <LabeledList>
-        <LabeledList.Item label="Recipient">
+        <LabeledList.Item label="Принимающий">
           {recipient}
         </LabeledList.Item>
-        <LabeledList.Item label="Message">
+        <LabeledList.Item label="Сообщение">
           {message}
         </LabeledList.Item>
-        <LabeledList.Item label="Validated by" color="green">
+        <LabeledList.Item label="Подтверждено" color="green">
           {msgVerified}
         </LabeledList.Item>
-        <LabeledList.Item label="Stamped by" color="blue">
+        <LabeledList.Item label="Проштамповано" color="blue">
           {msgStamped}
         </LabeledList.Item>
       </LabeledList>
@@ -293,7 +293,7 @@ const MessageAuth = (props, context) => {
         fluid
         mt={1}
         textAlign="center"
-        content="Send Message"
+        content="Отправить сообщение"
         icon="envelope"
         onClick={
           () => act('department', { department: recipient })
@@ -310,16 +310,16 @@ const StationAnnouncement = (props, context) => {
   } = data;
 
   return (
-    <Section title="Station-Wide Announcement" buttons={
+    <Section title="Уведомление по станции" buttons={
       <Button
-        content="Back"
+        content="Обратно"
         icon="arrow-left"
         onClick={
           () => act('setScreen', { setScreen: 0 })
         } />
     } >
       <Button
-        content={message ? message : "Edit Message"}
+        content={message ? message : "Редактировать сообщение"}
         icon="edit"
         onClick={
           () => act('writeAnnouncement')
@@ -337,7 +337,7 @@ const StationAnnouncement = (props, context) => {
         fluid
         mt={1}
         textAlign="center"
-        content="Send Announcement"
+        content="Отправить уведомление"
         icon="bullhorn"
         disabled={!(announceAuth && message)}
         onClick={
@@ -356,7 +356,7 @@ const PrintShippingLabel = (props, context) => {
   } = data;
 
   return (
-    <Section title="Print Shipping Label" buttons={
+    <Section title="Распечатать доставочную упаковку" buttons={
       <Button
         content="Back"
         icon="arrow-left"
@@ -365,10 +365,10 @@ const PrintShippingLabel = (props, context) => {
         } />
     } >
       <LabeledList>
-        <LabeledList.Item label="Destination">
+        <LabeledList.Item label="Пункт назначения">
           {shipDest}
         </LabeledList.Item>
-        <LabeledList.Item label="Validated by">
+        <LabeledList.Item label="Подтверждено">
           {msgVerified}
         </LabeledList.Item>
       </LabeledList>
@@ -376,18 +376,18 @@ const PrintShippingLabel = (props, context) => {
         fluid
         mt={1}
         textAlign="center"
-        content="Print Label"
+        content="Распечатать упаковку"
         icon="print"
         disabled={!(shipDest && msgVerified)}
         onClick={
           () => act('printLabel')
         } />
-      <Section title="Destinations" mt={1}>
+      <Section title="Пункты назначения" mt={1}>
         <LabeledList>
           {ship_dept.map(d => (
             <LabeledList.Item label={d} key={d}>
               <Button
-                content={shipDest === d ? "Selected" : "Select"}
+                content={shipDest === d ? "Выбрано" : "Выбрать"}
                 selected={shipDest === d}
                 onClick={
                   () => act('shipSelect', { shipSelect: d })
