@@ -22,7 +22,7 @@
 /obj/screen/alien/plasma_display
 	icon = 'icons/mob/screen_gen.dmi'
 	icon_state = "power_display2"
-	name = "накоплено плвзмы"
+	name = "накоплено плазмы"
 	screen_loc = ui_alienplasmadisplay
 
 
