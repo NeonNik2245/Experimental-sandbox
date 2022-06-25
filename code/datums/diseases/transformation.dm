@@ -150,19 +150,19 @@
 
 /datum/disease/transformation/xeno
 
-	name = "Xenomorph Transformation"
+	name = "Превращение в ксеноморфа"
 	cure_text = "Spaceacillin & Glycerol"
 	cures = list("spaceacillin", "glycerol")
 	cure_chance = 5
-	agent = "Rip-LEY Alien Microbes"
-	desc = "This disease changes the victim into a xenomorph."
+	agent = "Чужеродные микробы рип-ЛИ"
+	desc = "Эта болезнь превращает жертву в ксеноморфа."
 	severity = BIOHAZARD
 	visibility_flags = 0
 	stage1	= null
-	stage2	= list("Your throat feels scratchy.", "<span class='danger'>Kill...</span>")
-	stage3	= list("<span class='danger'>Your throat feels very scratchy.</span>", "Your skin feels tight.", "<span class='danger'>You can feel something move...inside.</span>")
-	stage4	= list("<span class='danger'>Your skin feels very tight.</span>", "<span class='danger'>Your blood boils!</span>", "<span class='danger'>You can feel... something...inside you.</span>")
-	stage5	= list("<span class='danger'>Your skin feels as if it's about to burst off!</span>")
+	stage2	= list("У тебя першит в горле.", "<span class='danger'>Убивать...</span>")
+	stage3	= list("<span class='danger'>Твоё горло болит и чешется.</span>", "Твоя кожа натягивается.", "<span class='danger'>Ты чувствуешь, как что-то движется...внутри.</span>")
+	stage4	= list("<span class='danger'>Твоя кожа натянута до предела.</span>", "<span class='danger'>Твоя кровь кипит!</span>", "<span class='danger'>Ты чувствуешь... что-то...внутри себя.</span>")
+	stage5	= list("<span class='danger'>Твоя кожа вот-вот лопнет!</span>")
 	new_form = /mob/living/carbon/alien/humanoid/hunter
 
 /datum/disease/transformation/xeno/stage_act()
@@ -170,11 +170,11 @@
 	switch(stage)
 		if(3)
 			if(prob(4))
-				to_chat(affected_mob, "<span class='danger'>You feel a stabbing pain in your head.</span>")
+				to_chat(affected_mob, "<span class='danger'>Ты чувствуешь острую головную боль.</span>")
 				affected_mob.Paralyse(2)
 		if(4)
 			if(prob(20))
-				affected_mob.say(pick("You look delicious.", "Going to... devour you...", "Hsssshhhhh!"))
+				affected_mob.say(pick("Ты выглядишь аппетитным.", "Готов... сожрать тебя...", "Hsssshhhhh!"))
 
 
 /datum/disease/transformation/slime

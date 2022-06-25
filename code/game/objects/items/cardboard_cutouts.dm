@@ -137,8 +137,8 @@
 			desc = "A cardboard cutout of a shadowling."
 			icon_state = "cutout_shadowling"
 		if("Xenomorph")
-			name = "alien hunter ([rand(1, 999)])"
-			desc = "A cardboard cutout of a xenomorph."
+			name = "охотник чужих ([rand(1, 999)])"
+			desc = "картонная вырезка ксеноморфа."
 			icon_state = "cutout_fukken_xeno"
 			if(prob(10))
 				alpha = 75 //Spooky sneaking!
@@ -171,8 +171,8 @@
 			icon_state = "bowmon"
 			dir = "SOUTH"
 		if("Xenomorph Maid")
-			name = "lusty xenomorph maid ([rand(1, 999)])"
-			desc = "A cardboard cutout of a xenomorph maid."
+			name = "похотливая горничная ксеноморф ([rand(1, 999)])"
+			desc = "Картонная вырезка ксеноморфа-горничной."
 			icon_state = "cutout_lusty"
 		if("Security Officer")
 			name = "Private Security Officer"

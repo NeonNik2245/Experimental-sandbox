@@ -1,6 +1,6 @@
 /obj/effect/decal/cleanable/blood/xeno
-	name = "xeno blood"
-	desc = "It's green and acidic. It looks like... <i>blood?</i>"
+	name = "ксено кровь"
+	desc = "Зелёная и кислотная. Это выглядит как... <i>кровь?</i>"
 	icon = 'icons/effects/blood.dmi'
 	basecolor = "#05EE05"
 	bloodiness = BLOOD_AMOUNT_PER_DECAL
@@ -11,8 +11,8 @@
 	amount = 2
 
 /obj/effect/decal/cleanable/blood/gibs/xeno
-	name = "xeno gibs"
-	desc = "Gnarly..."
+	name = "ошмётки ксеноса"
+	desc = "Мерзость..."
 	icon_state = "xgib1"
 	random_icon_states = list("xgib1", "xgib2", "xgib3", "xgib4", "xgib5", "xgib6")
 	basecolor = "#05EE05"

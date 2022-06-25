@@ -467,20 +467,20 @@
 /datum/language/xenocommon
 	name = "Xenomorph"
 	colour = "alien"
-	desc = "The common tongue of the xenomorphs."
-	speech_verb = "hisses"
-	ask_verb = "hisses"
-	exclaim_verbs = list("hisses")
+	desc = "Общий язык ксеноморфов"
+	speech_verb = "шипит"
+	ask_verb = "шипит"
+	exclaim_verbs = list("шипит")
 	key = "6"
 	flags = RESTRICTED
 	syllables = list("sss","sSs","SSS")
 
 /datum/language/xenos
 	name = "Hivemind"
-	desc = "Xenomorphs have the strange ability to commune over a psychic hivemind."
-	speech_verb = "hisses"
-	ask_verb = "hisses"
-	exclaim_verbs = list("hisses")
+	desc = "Ксеноморфы имеют странную способность общаться при помощи разума улья."
+	speech_verb = "шипит"
+	ask_verb = "шипит"
+	exclaim_verbs = list("шипит")
 	colour = "alien"
 	key = "a"
 	flags = RESTRICTED | HIVEMIND | NOBABEL

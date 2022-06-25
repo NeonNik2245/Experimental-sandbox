@@ -73,7 +73,7 @@
 
 /obj/item/target/alien
 	icon_state = "target_q"
-	desc = "A shooting target that looks like a xenomorphic alien."
+	desc = "Мишень для стрельбы в виде ксеноморфа."
 	hp = 2350 // alium onest too kinda
 
 #define DECALTYPE_SCORCH 1

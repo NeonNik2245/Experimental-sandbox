@@ -292,7 +292,7 @@ GLOBAL_DATUM_INIT(fire_overlay, /image, image("icon" = 'icons/goonstation/effect
 	if(!A.has_fine_manipulation)
 		if(src in A.contents) // To stop Aliens having items stuck in their pockets
 			A.unEquip(src)
-		to_chat(user, "<span class='warning'>Your claws aren't capable of such fine manipulation!</span>")
+		to_chat(user, "<span class='warning'>Ваши когти не способны на столь точные манипуляции!</span>")
 		return
 	attack_hand(A)
 

@@ -1,5 +1,5 @@
 /obj/item/organ/internal/brain
-	name = "brain"
+	name = "мозг"
 	max_damage = 120
 	icon_state = "brain2"
 	force = 1.0
@@ -8,7 +8,7 @@
 	throw_speed = 3
 	throw_range = 5
 	origin_tech = "biotech=5"
-	attack_verb = list("attacked", "slapped", "whacked")
+	attack_verb = list("атаковал", "шлёпнул", "стукнул")
 	var/mob/living/carbon/brain/brainmob = null
 	organ_tag = "brain"
 	parent_organ = "head"
@@ -19,8 +19,8 @@
 	var/mmi_icon_state = "mmi_full"
 
 /obj/item/organ/internal/brain/xeno
-	name = "xenomorph brain"
-	desc = "We barely understand the brains of terrestial animals. Who knows what we may find in the brain of such an advanced species?"
+	name = "мозг ксеноморфа"
+	desc = "Мы едва понимаем мозг обычных животных, кто знает, что скрывается в мозгу столь развитого вида?"
 	icon_state = "brain-x"
 	origin_tech = "biotech=6"
 	mmi_icon = 'icons/mob/alien.dmi'
@@ -44,14 +44,14 @@
 	if(H.mind)
 		H.mind.transfer_to(brainmob)
 
-	to_chat(brainmob, "<span class='notice'>You feel slightly disoriented. That's normal when you're just a [initial(src.name)].</span>")
+	to_chat(brainmob, "<span class='notice'>Ты чувствуешь себя слегка дезориентированным. Это нормально, когда ты просто [initial(src.name)].</span>")
 
 /obj/item/organ/internal/brain/examine(mob/user) // -- TLE
 	. = ..()
 	if(brainmob && brainmob.client)//if thar be a brain inside... the brain.
-		. += "You can feel the small spark of life still left in this one."
+		. += "Вы можете почувствовать здесь искорку жизни."
 	else
-		. += "This one seems particularly lifeless. Perhaps it will regain some of its luster later.."
+		. += "Кажется, что тут абсолютно нет жизни. Возможно, вскоре вы увидите тут искорку жизни.."
 
 /obj/item/organ/internal/brain/remove(var/mob/living/user,special = 0)
 	if(dna)
@@ -113,16 +113,16 @@
 	return // Too important to eat.
 
 /obj/item/organ/internal/brain/slime
-	name = "slime core"
-	desc = "A complex, organic knot of jelly and crystalline particles."
+	name = "слаймовое ядро"
+	desc = "Сложный органический узел из желе и кристальных частиц."
 	icon = 'icons/mob/slimes.dmi'
 	icon_state = "green slime extract"
 	mmi_icon_state = "slime_mmi"
 //	parent_organ = "chest" Hello I am from the ministry of rubber forehead aliens how are you
 
 /obj/item/organ/internal/brain/golem
-	name = "Runic mind"
-	desc = "A tightly furled roll of paper, covered with indecipherable runes."
+	name = "Руническое сознание"
+	desc = "Туго свернутый свиток бумаги, покрытый неразборчивыми рунами."
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "scroll"
 

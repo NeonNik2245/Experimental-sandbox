@@ -15,8 +15,8 @@
 	anchored = TRUE
 
 /obj/effect/decal/remains/xeno
-	name = "remains"
-	desc = "They look like the remains of something... alien. They have a strange aura about them."
+	name = "остатки"
+	desc = "Выглядит, как остатки чего-то... инопланетного. Вокруг них странная аура."
 	icon = 'icons/effects/blood.dmi'
 	icon_state = "remainsxeno"
 	anchored = TRUE

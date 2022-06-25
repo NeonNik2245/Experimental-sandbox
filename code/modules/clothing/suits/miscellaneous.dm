@@ -679,8 +679,8 @@
 	icon_state = "white_jacket"
 
 /obj/item/clothing/suit/xenos
-	name = "xenos suit"
-	desc = "A suit made out of chitinous alien hide."
+	name = "ксено костюм"
+	desc = "Костюм, сделанный из хитина чужых."
 	icon_state = "xenos"
 	item_state = "xenos_helm"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS|HANDS

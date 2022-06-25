@@ -1,12 +1,12 @@
 /mob/living/simple_animal/hostile/alien
-	name = "alien hunter"
-	desc = "Hiss!"
+	name = "охотник чужих"
+	desc = "Хщщщщ!"
 	icon = 'icons/mob/alien.dmi'
 	icon_state = "alienh_running"
 	icon_living = "alienh_running"
 	icon_dead = "alienh_dead"
 	icon_gib = "syndicate_gib"
-	gender = FEMALE
+	gender = MALE //охотник же, не охотница
 	response_help = "pokes"
 	response_disarm = "shoves"
 	response_harm = "hits"
@@ -18,8 +18,8 @@
 	obj_damage = 60
 	melee_damage_lower = 25
 	melee_damage_upper = 25
-	attacktext = "slashes"
-	speak_emote = list("hisses")
+	attacktext = "режет"
+	speak_emote = list("шипит")
 	bubble_icon = "alien"
 	a_intent = INTENT_HARM
 	attack_sound = 'sound/weapons/bladeslice.ogg'
@@ -33,14 +33,15 @@
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	gold_core_spawnable = HOSTILE_SPAWN
 	death_sound = 'sound/voice/hiss6.ogg'
-	deathmessage = "lets out a waning guttural screech, green blood bubbling from its maw..."
+	deathmessage = "издает слабеющий гортанный визг, зеленая кровь пузырится из его пасти..."
 
 
 /mob/living/simple_animal/hostile/alien/drone
-	name = "alien drone"
+	name = "трутень чужих"
 	icon_state = "aliend_running"
 	icon_living = "aliend_running"
 	icon_dead = "aliend_dead"
+	gender = MALE
 	melee_damage_lower = 15
 	melee_damage_upper = 15
 	var/plant_cooldown = 30
@@ -56,10 +57,11 @@
 			SpreadPlants()
 
 /mob/living/simple_animal/hostile/alien/sentinel
-	name = "alien sentinel"
+	name = "дозорный чужих"
 	icon_state = "aliens_running"
 	icon_living = "aliens_running"
 	icon_dead = "aliens_dead"
+	gender = MALE
 	health = 150
 	maxHealth = 150
 	melee_damage_lower = 15
@@ -72,10 +74,11 @@
 
 
 /mob/living/simple_animal/hostile/alien/queen
-	name = "alien queen"
+	name = "королева чужих"
 	icon_state = "alienq_running"
 	icon_living = "alienq_running"
 	icon_dead = "alienq_d"
+	gender = FEMALE
 	health = 250
 	maxHealth = 250
 	melee_damage_lower = 15
@@ -123,12 +126,13 @@
 	new /obj/structure/alien/egg(loc)
 
 /mob/living/simple_animal/hostile/alien/queen/large
-	name = "alien empress"
+	name = "императрица чужих"
 	icon = 'icons/mob/alienlarge.dmi'
 	icon_state = "queen_s"
 	icon_living = "queen_s"
 	icon_dead = "queen_dead"
 	bubble_icon = "alienroyal"
+	gender = FEMALE
 	move_to_delay = 4
 	maxHealth = 400
 	health = 400
@@ -142,7 +146,7 @@
 	icon_state = "toxin"
 
 /mob/living/simple_animal/hostile/alien/maid
-	name = "lusty xenomorph maid"
+	name = "похотливая горничная ксеноморф"
 	melee_damage_lower = 0
 	melee_damage_upper = 0
 	a_intent = INTENT_HELP

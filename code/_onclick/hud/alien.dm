@@ -2,7 +2,7 @@
 	icon = 'icons/mob/screen_alien.dmi'
 
 /obj/screen/alien/leap
-	name = "toggle leap"
+	name = "переключить прыжок"
 	icon_state = "leap_off"
 
 /obj/screen/alien/leap/Click()
@@ -11,7 +11,7 @@
 		AH.toggle_leap()
 
 /obj/screen/alien/nightvision
-	name = "toggle night-vision"
+	name = "переключить ночное зрение"
 	icon_state = "nightvision1"
 
 /obj/screen/alien/nightvision/Click()
@@ -22,7 +22,7 @@
 /obj/screen/alien/plasma_display
 	icon = 'icons/mob/screen_gen.dmi'
 	icon_state = "power_display2"
-	name = "plasma stored"
+	name = "накоплено плвзмы"
 	screen_loc = ui_alienplasmadisplay
 
 

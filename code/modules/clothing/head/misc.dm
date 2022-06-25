@@ -305,10 +305,10 @@
 	flags = BLOCKHAIR
 
 /obj/item/clothing/head/xenos
-	name = "xenos helmet"
+	name = "ксено шлем"
 	icon_state = "xenos"
 	item_state = "xenos_helm"
-	desc = "A helmet made out of chitinous alien hide."
+	desc = "Шлем, сделанный из хитина чужого."
 	flags = BLOCKHAIR
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE
 

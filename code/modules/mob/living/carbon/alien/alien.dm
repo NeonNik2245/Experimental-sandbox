@@ -1,7 +1,7 @@
 /mob/living/carbon/alien
-	name = "alien"
+	name = "чужой"
 	voice_name = "alien"
-	speak_emote = list("hisses")
+	speak_emote = list("шипит")
 	bubble_icon = "alien"
 	icon = 'icons/mob/alien.dmi'
 	gender = NEUTER
@@ -23,7 +23,7 @@
 	var/leaping = FALSE
 	ventcrawler = 2
 	var/list/alien_organs = list()
-	var/death_message = "lets out a waning guttural screech, green blood bubbling from its maw..."
+	var/death_message = "издает слабеющий гортанный визг, из его пасти пузырится зеленая кровь..."
 	var/death_sound = 'sound/voice/hiss6.ogg'
 
 /mob/living/carbon/alien/New()
@@ -43,16 +43,16 @@
 	return GLOB.all_languages["Xenomorph"]
 
 /mob/living/carbon/alien/say_quote(var/message, var/datum/language/speaking = null)
-	var/verb = "hisses"
+	var/verb = "шипит"
 	var/ending = copytext(message, length(message))
 
 	if(speaking && (speaking.name != "Galactic Common")) //this is so adminbooze xenos speaking common have their custom verbs,
 		verb = speaking.get_spoken_verb(ending)          //and use normal verbs for their own languages and non-common languages
 	else
 		if(ending=="!")
-			verb = "roars"
+			verb = "рычит"
 		else if(ending=="?")
-			verb = "hisses curiously"
+			verb = "шипит с любопытством"
 	return verb
 
 
@@ -135,7 +135,7 @@
 	return
 
 /mob/living/carbon/alien/verb/nightvisiontoggle()
-	set name = "Toggle Night Vision"
+	set name = "Переключить ночное зрение"
 	set category = "Alien"
 
 	if(!nightvision)

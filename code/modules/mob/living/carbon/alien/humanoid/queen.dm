@@ -1,5 +1,5 @@
 /mob/living/carbon/alien/humanoid/queen
-	name = "alien queen"
+	name = "королева чужих"
 	caste = "q"
 	maxHealth = 250
 	health = 250
@@ -18,7 +18,7 @@
 		if(Q.stat == DEAD)
 			continue
 		if(Q.client)
-			name = "alien princess ([rand(1, 999)])"	//if this is too cutesy feel free to change it/remove it.
+			name = "принцесса чужих ([rand(1, 999)])"	//if this is too cutesy feel free to change it/remove it.
 			break
 
 	real_name = src.name
@@ -39,17 +39,17 @@
 //Queen verbs
 /mob/living/carbon/alien/humanoid/queen/verb/lay_egg()
 
-	set name = "Lay Egg (75)"
-	set desc = "Lay an egg to produce huggers to impregnate prey with."
+	set name = "Отложить яйцо (75)"
+	set desc = "Отложите яйцо, чтобы создать лицехватов для оплодотворения добычи."
 	set category = "Alien"
 	if(locate(/obj/structure/alien/egg) in get_turf(src))
-		to_chat(src, "<span class='noticealien'>There's already an egg here.</span>")
+		to_chat(src, "<span class='noticealien'>Здесь уже есть яйцо.</span>")
 		return
 
 	if(powerc(75,1))//Can't plant eggs on spess tiles. That's silly.
 		adjustPlasma(-75)
 		for(var/mob/O in viewers(src, null))
-			O.show_message(text("<span class='alertalien'>[src] has laid an egg!</span>"), 1)
+			O.show_message(text("<span class='alertalien'>[src] отложила яйцо!</span>"), 1)
 		new /obj/structure/alien/egg(loc)
 	return
 

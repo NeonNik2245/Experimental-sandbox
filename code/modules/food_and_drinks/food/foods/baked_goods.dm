@@ -340,9 +340,9 @@
 		reagents.add_reagent("omnizine", 5)
 
 /obj/item/reagent_containers/food/snacks/xemeatpie
-	name = "xeno-pie"
+	name = "ксено пирог"
 	icon_state = "xenomeatpie"
-	desc = "A delicious meatpie. Probably heretical."
+	desc = "изысканный пирог. Вероятно, еретический."
 	trash = /obj/item/trash/plate
 	filling_color = "#43DE18"
 	list_reagents = list("nutriment" = 10, "vitamin" = 2)

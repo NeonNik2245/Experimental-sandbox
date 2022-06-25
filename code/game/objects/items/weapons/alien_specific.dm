@@ -1,8 +1,8 @@
 //This file contains xenoborg specic weapons.
 
 /obj/item/melee/energy/alien/claws
-	name = "energy claws"
-	desc = "A set of alien energy claws."
+	name = "энергетические когти"
+	desc = "Набор энергетических когтей чужих."
 	icon = 'icons/mob/alien.dmi'
 	icon_state = "borg-laser-claws"
 	icon_state_on = "borg-laser-claws"
@@ -19,14 +19,14 @@
 
 //Bottles for borg liquid squirters. PSSH PSSH
 /obj/item/reagent_containers/spray/alien
-	name = "liquid synthesizer"
-	desc = "squirts alien liquids."
+	name = "жидкостный синтезатор"
+	desc = "Выделяет жидкости чужих."
 	icon = 'icons/mob/alien.dmi'
 	icon_state = "borg-default"
 
 /obj/item/reagent_containers/spray/alien/smoke
-	name = "smoke synthesizer"
-	desc = "squirts smokey liquids."
+	name = "дымовой синтезатор"
+	desc = "Выделяет дымящиеся жидкости."
 	icon = 'icons/mob/alien.dmi'
 	icon_state = "borg-spray-smoke"
 
@@ -46,21 +46,21 @@
 	playsound(user.loc, 'sound/effects/bamf.ogg', 50, 2)
 
 /obj/item/reagent_containers/spray/alien/acid
-	name = "acid synthesizer"
-	desc = "squirts burny liquids."
+	name = "кислотный синтезатор"
+	desc = "Выделяет жгучие жидкости."
 	icon = 'icons/mob/alien.dmi'
 	icon_state = "borg-spray-acid"
 
 /obj/item/reagent_containers/spray/alien/stun
-	name = "paralytic toxin synthesizer"
-	desc = "squirts viagra."
+	name = "синтезатор парализующих токсинов"
+	desc = "выделяет виагру."
 	icon = 'icons/mob/alien.dmi'
 	icon_state = "borg-spray-stun"
 
 //SKREEEEEEEEEEEE tool
 
 /obj/item/flash/cyborg/alien
-	name = "eye flash"
-	desc = "Useful for taking pictures, making friends and flash-frying chips."
+	name = "глазная вспышка"
+	desc = "Полезно для фотографирования, знакомства с друзьями и быстрой жарки чипсов."
 	icon = 'icons/mob/alien.dmi'
 	icon_state = "borg-flash"

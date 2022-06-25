@@ -8,91 +8,91 @@ Doesn't work on other aliens/AI.*/
 
 /mob/living/carbon/proc/powerc(X, Y)//Y is optional, checks for weed planting. X can be null.
 	if(stat)
-		to_chat(src, "<span class='noticealien'>You must be conscious to do this.</span>")
+		to_chat(src, "<span class='noticealien'>Вы должны быть в сознании для этого.</span>")
 		return 0
 	else if(X && getPlasma() < X)
-		to_chat(src, "<span class='noticealien'>Not enough plasma stored.</span>")
+		to_chat(src, "<span class='noticealien'>Недостаточно плазмы.</span>")
 		return 0
 	else if(Y && (!isturf(src.loc) || istype(src.loc, /turf/space)))
-		to_chat(src, "<span class='noticealien'>You can't place that here!</span>")
+		to_chat(src, "<span class='noticealien'>Вы не можете расположить это здесь!</span>")
 		return 0
 	else	return 1
 
 /mob/living/carbon/alien/humanoid/verb/plant()
-	set name = "Plant Weeds (50)"
-	set desc = "Plants some alien weeds"
+	set name = "Посадить сорняки (50)"
+	set desc = "Рассаживает немного инопланетных сорняков"
 	set category = "Alien"
 
 	if(locate(/obj/structure/alien/weeds/node) in get_turf(src))
-		to_chat(src, "<span class='noticealien'>There's already a weed node here.</span>")
+		to_chat(src, "<span class='noticealien'>здесь уже есть узел сорняков.</span>")
 		return
 
 	if(powerc(50,1))
 		adjustPlasma(-50)
 		for(var/mob/O in viewers(src, null))
-			O.show_message(text("<span class='alertalien'>[src] has planted some alien weeds!</span>"), 1)
+			O.show_message(text("<span class='alertalien'>[src] посадил инопланетные сорняки!</span>"), 1)
 		new /obj/structure/alien/weeds/node(loc)
 	return
 
 /mob/living/carbon/alien/humanoid/verb/whisp(mob/M as mob in oview())
-	set name = "Whisper (10)"
-	set desc = "Whisper to someone"
+	set name = "Шёпот (10)"
+	set desc = "Нашептать кому-то"
 	set category = "Alien"
 
 	if(powerc(10))
 		adjustPlasma(-10)
-		var/msg = sanitize(input("Message:", "Alien Whisper") as text|null)
+		var/msg = sanitize(input("сообщение:", "Чужой шепчет") as text|null)
 		if(msg)
 			log_say("(AWHISPER to [key_name(M)]) [msg]", src)
-			to_chat(M, "<span class='noticealien'>You hear a strange, alien voice in your head...<span class='noticealien'>[msg]")
-			to_chat(src, "<span class='noticealien'>You said: [msg] to [M]</span>")
+			to_chat(M, "<span class='noticealien'>Вы слышите странный, чужой голос в своей голове...<span class='noticealien'>[msg]")
+			to_chat(src, "<span class='noticealien'>Вы говорите: [msg] [M]</span>")
 			for(var/mob/dead/observer/G in GLOB.player_list)
-				G.show_message("<i>Alien message from <b>[src]</b> ([ghost_follow_link(src, ghost=G)]) to <b>[M]</b> ([ghost_follow_link(M, ghost=G)]): [msg]</i>")
+				G.show_message("<i>Сообщение чужого <b>[src]</b> ([ghost_follow_link(src, ghost=G)]) к <b>[M]</b> ([ghost_follow_link(M, ghost=G)]): [msg]</i>")
 	return
 
 /mob/living/carbon/alien/humanoid/verb/transfer_plasma(mob/living/carbon/alien/M as mob in oview())
-	set name = "Transfer Plasma"
-	set desc = "Transfer Plasma to another alien"
+	set name = "Передать плазму"
+	set desc = "Передать плазму другому чужому"
 	set category = "Alien"
 
 	if(isalien(M))
-		var/amount = input("Amount:", "Transfer Plasma to [M]") as num
+		var/amount = input("Количество:", "Передать плазму [M]") as num
 		if(amount)
 			amount = abs(round(amount))
 			if(powerc(amount))
 				if(get_dist(src,M) <= 1)
 					M.adjustPlasma(amount)
 					adjustPlasma(-amount)
-					to_chat(M, "<span class='noticealien'>[src] has transfered [amount] plasma to you.</span>")
-					to_chat(src, {"<span class='noticealien'>You have trasferred [amount] plasma to [M]</span>"})
+					to_chat(M, "<span class='noticealien'>[src] передал [amount] плазмы тебе.</span>")
+					to_chat(src, {"<span class='noticealien'>Ты передал [amount] плазмы [M]</span>"})
 				else
-					to_chat(src, "<span class='noticealien'>You need to be closer.</span>")
+					to_chat(src, "<span class='noticealien'>Тебе надо быть ближе для передачи.</span>")
 	return
 
 
 /mob/living/carbon/alien/humanoid/proc/corrosive_acid(atom/target) //If they right click to corrode, an error will flash if its an invalid target./N
-	set name = "Corrossive Acid (200)"
-	set desc = "Drench an object in acid, destroying it over time."
+	set name = "Едкая кислота (200)"
+	set desc = "Покройте объект кислотой для его разрушения с течением времени"
 	set category = "Alien"
 
 	if(powerc(200))
 		if(target in oview(1))
 			if(target.acid_act(200, 100))
-				visible_message("<span class='alertalien'>[src] vomits globs of vile stuff all over [target]. It begins to sizzle and melt under the bubbling mess of acid!</span>")
+				visible_message("<span class='alertalien'>[src] покрывает [target] мерзкой дрянью. Теперь [target] начинает шипеть и плавиться под пузырящейся кислотой!</span>")
 				adjustPlasma(-200)
 			else
-				to_chat(src, "<span class='noticealien'>You cannot dissolve this object.</span>")
+				to_chat(src, "<span class='noticealien'>Ты не можешь растворить этот объект.</span>")
 		else
 			to_chat(src, "<span class='noticealien'>[target] is too far away.</span>")
 
 /mob/living/carbon/alien/humanoid/proc/neurotoxin() // ok
-	set name = "Spit Neurotoxin (50)"
-	set desc = "Spits neurotoxin at someone, paralyzing them for a short time."
+	set name = "Плевок нейротоксином (50)"
+	set desc = "Плюёт нейротоксином в цель, парализуя их на короткое время"
 	set category = "Alien"
 
 	if(powerc(50))
 		adjustPlasma(-50)
-		src.visible_message("<span class='danger'>[src] spits neurotoxin!", "<span class='alertalien'>You spit neurotoxin.</span>")
+		src.visible_message("<span class='danger'>[src] плюёт нейротоксином!", "<span class='alertalien'>Вы плюнули нейротоксином!</span>")
 
 		var/turf/T = loc
 		var/turf/U = get_step(src, dir) // Get the tile infront of the move, based on their direction
@@ -110,29 +110,29 @@ Doesn't work on other aliens/AI.*/
 	return
 
 /mob/living/carbon/alien/humanoid/proc/resin() // -- TLE
-	set name = "Secrete Resin (55)"
-	set desc = "Secrete tough malleable resin."
+	set name = "Выделить смолу (55)"
+	set desc = "Выделяет жёсткую податливую смолу"
 	set category = "Alien"
 
 	if(powerc(55))
-		var/choice = input("Choose what you wish to shape.","Resin building") as null|anything in list("resin wall","resin membrane","resin nest") //would do it through typesof but then the player choice would have the type path and we don't want the internal workings to be exposed ICly - Urist
+		var/choice = input("Выбери желаемую форму.","Сооружения из смолы") as null|anything in list("смолистая стена","смолистая мембрана","смолистое гнездо") //would do it through typesof but then the player choice would have the type path and we don't want the internal workings to be exposed ICly - Urist
 
 		if(!choice || !powerc(55))	return
 		adjustPlasma(-55)
 		for(var/mob/O in viewers(src, null))
-			O.show_message(text("<span class='alertalien'>[src] vomits up a thick purple substance and shapes it!</span>"), 1)
+			O.show_message(text("<span class='alertalien'>[src] выделяет жирную фиолетовую субстанцию и придаёт ей форму!</span>"), 1)
 		switch(choice)
-			if("resin wall")
+			if("смолистая стена")
 				new /obj/structure/alien/resin/wall(loc)
-			if("resin membrane")
+			if("смолистая мембрана")
 				new /obj/structure/alien/resin/membrane(loc)
-			if("resin nest")
+			if("смолистое гнездо")
 				new /obj/structure/bed/nest(loc)
 	return
 
 /mob/living/carbon/alien/humanoid/verb/regurgitate()
-	set name = "Regurgitate"
-	set desc = "Empties the contents of your stomach"
+	set name = "Отрыжка"
+	set desc = "Опустошает содержимое вашего желудка"
 	set category = "Alien"
 
 	if(powerc())
@@ -140,7 +140,7 @@ Doesn't work on other aliens/AI.*/
 			for(var/mob/M in src)
 				LAZYREMOVE(stomach_contents, M)
 				M.forceMove(drop_location())
-			visible_message("<span class='alertalien'><B>[src] hurls out the contents of [p_their()] stomach!</span>")
+			visible_message("<span class='alertalien'><B>[src] выплёвывает содержимое своего желудка!</span>")
 
 /mob/living/carbon/proc/getPlasma()
  	var/obj/item/organ/internal/xenos/plasmavessel/vessel = get_int_organ(/obj/item/organ/internal/xenos/plasmavessel)

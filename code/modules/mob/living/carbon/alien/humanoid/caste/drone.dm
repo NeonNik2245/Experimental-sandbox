@@ -1,13 +1,13 @@
 /mob/living/carbon/alien/humanoid/drone
-	name = "alien drone"
+	name = "трутень чужих"
 	caste = "d"
 	maxHealth = 100
 	health = 100
 	icon_state = "aliend_s"
 
 /mob/living/carbon/alien/humanoid/drone/New()
-	if(src.name == "alien drone")
-		src.name = text("alien drone ([rand(1, 1000)])")
+	if(src.name == "трутень чужих")
+		src.name = text("трутень чужих ([rand(1, 999)])")
 	src.real_name = src.name
 	alien_organs += new /obj/item/organ/internal/xenos/plasmavessel/drone
 	alien_organs += new /obj/item/organ/internal/xenos/acidgland
@@ -18,8 +18,8 @@
 //Drone verbs
 
 /mob/living/carbon/alien/humanoid/drone/verb/evolve() // -- TLE
-	set name = "Evolve (500)"
-	set desc = "Produce an interal egg sac capable of spawning children. Only one queen can exist at a time."
+	set name = "Эволюционировать (500)"
+	set desc = "Создаёт внутренний мешок для яиц, позволяющий оставлять потомство. Одновременно может быть только одна королева."
 	set category = "Alien"
 
 	if(powerc(500))
@@ -31,17 +31,17 @@
 			no_queen = 0
 
 		if(src.has_brain_worms())
-			to_chat(src, "<span class='warning'>We cannot perform this ability at the present time!</span>")
+			to_chat(src, "<span class='warning'>В настоящее время ты не можешь использовать эту способность!</span>")
 			return
 		if(no_queen)
 			adjustPlasma(-500)
-			to_chat(src, "<span class='noticealien'>You begin to evolve!</span>")
+			to_chat(src, "<span class='noticealien'>Ты начинаешь эволюционировать!</span>")
 			for(var/mob/O in viewers(src, null))
-				O.show_message(text("<span class='alertalien'>[src] begins to twist and contort!</span>"), 1)
+				O.show_message(text("<span class='alertalien'>[src] начинает извиваться и корчиться!</span>"), 1)
 			var/mob/living/carbon/alien/humanoid/queen/new_xeno = new(loc)
 			mind.transfer_to(new_xeno)
 			new_xeno.mind.name = new_xeno.name
 			qdel(src)
 		else
-			to_chat(src, "<span class='notice'>We already have an alive queen.</span>")
+			to_chat(src, "<span class='notice'>У нас уже есть живая королева.</span>")
 	return

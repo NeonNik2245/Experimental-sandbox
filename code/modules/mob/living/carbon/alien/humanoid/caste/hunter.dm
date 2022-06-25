@@ -1,13 +1,13 @@
 /mob/living/carbon/alien/humanoid/hunter
-	name = "alien hunter"
+	name = "охотник чужих"
 	caste = "h"
 	maxHealth = 125
 	health = 125
 	icon_state = "alienh_s"
 
 /mob/living/carbon/alien/humanoid/hunter/New()
-	if(name == "alien hunter")
-		name = text("alien hunter ([rand(1, 1000)])")
+	if(name == "охотник чужих")
+		name = text("охотник чужих ([rand(1, 999)])")
 	real_name = name
 	alien_organs += new /obj/item/organ/internal/xenos/plasmavessel/hunter
 	..()
@@ -29,7 +29,7 @@
 	leap_on_click = !leap_on_click
 	leap_icon.icon_state = "leap_[leap_on_click ? "on":"off"]"
 	if(message)
-		to_chat(src, "<span class='noticealien'>You will now [leap_on_click ? "leap at":"slash at"] enemies!</span>")
+		to_chat(src, "<span class='noticealien'>Теперь ты будешь [leap_on_click ? "напрыгивать на":"разрезать"] своих противников!</span>")
 	else
 		return
 
@@ -44,14 +44,14 @@
 
 /mob/living/carbon/alien/humanoid/hunter/proc/leap_at(var/atom/A)
 	if(pounce_cooldown > world.time)
-		to_chat(src, "<span class='alertalien'>You are too fatigued to pounce right now!</span>")
+		to_chat(src, "<span class='alertalien'>Ты слишком устал, что бы наброситься прямо сейчас!</span>")
 		return
 
 	if(leaping) //Leap while you leap, so you can leap while you leap
 		return
 
 	if(!has_gravity(src) || !has_gravity(A))
-		to_chat(src, "<span class='alertalien'>It is unsafe to leap without gravity!</span>")
+		to_chat(src, "<span class='alertalien'>Прыгать без гравитации небезопасно!</span>")
 		//It's also extremely buggy visually, so it's balance+bugfix
 		return
 	if(lying)
@@ -80,7 +80,7 @@
 				if(H.check_shields(src, 0, "the [name]", attack_type = LEAP_ATTACK))
 					blocked = 1
 			if(!blocked)
-				L.visible_message("<span class ='danger'>[src] pounces on [L]!</span>", "<span class ='userdanger'>[src] pounces on you!</span>")
+				L.visible_message("<span class ='danger'>[src] напрыгивает на [L]!</span>", "<span class ='userdanger'>[src] напрыгивает на тебя!</span>")
 				if(ishuman(L))
 					var/mob/living/carbon/human/H = L
 					H.apply_effect(5, WEAKEN, H.run_armor_check(null, "melee"))
@@ -93,7 +93,7 @@
 
 			toggle_leap(0)
 		else if(A.density && !A.CanPass(src))
-			visible_message("<span class ='danger'>[src] smashes into [A]!</span>", "<span class ='alertalien'>[src] smashes into [A]!</span>")
+			visible_message("<span class ='danger'>[src] врезается в [A]!</span>", "<span class ='alertalien'>[src] врезается в [A]!</span>")
 			Weaken(2, 1, 1)
 
 		if(leaping)

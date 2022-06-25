@@ -55,14 +55,14 @@ GLOBAL_LIST_INIT(lizard_recipes, list(new/datum/stack_recipe("lizard skin handba
 	return ..()
 
 /obj/item/stack/sheet/animalhide/xeno
-	name = "alien hide"
-	desc = "The skin of a terrible creature."
-	singular_name = "alien hide piece"
+	name = "шкура чужого"
+	desc = "Шкура ужасающего создания."
+	singular_name = "кусок шкуры чужого"
 	icon_state = "sheet-xeno"
 
 GLOBAL_LIST_INIT(xeno_recipes, list (
-	new/datum/stack_recipe("alien helmet", /obj/item/clothing/head/xenos, 1),
-	new/datum/stack_recipe("alien suit", /obj/item/clothing/suit/xenos, 2)))
+	new/datum/stack_recipe("шлем чужого", /obj/item/clothing/head/xenos, 1),
+	new/datum/stack_recipe("костюм чужого", /obj/item/clothing/suit/xenos, 2)))
 
 /obj/item/stack/sheet/animalhide/xeno/Initialize(mapload, new_amount, merge = TRUE)
 	recipes = GLOB.xeno_recipes
@@ -70,16 +70,16 @@ GLOBAL_LIST_INIT(xeno_recipes, list (
 
 //don't see anywhere else to put these, maybe together they could be used to make the xenos suit?
 /obj/item/stack/sheet/xenochitin
-	name = "alien chitin"
-	desc = "A piece of the hide of a terrible creature."
-	singular_name = "alien hide piece"
+	name = "хитин чужого"
+	desc = "Часть шкуры ужасающего существа."
+	singular_name = "кусок шкуры чужого"
 	icon = 'icons/mob/alien.dmi'
 	icon_state = "chitin"
 	origin_tech = ""
 
 /obj/item/xenos_claw
-	name = "alien claw"
-	desc = "The claw of a terrible creature."
+	name = "коготь чужого"
+	desc = "Коготь ужасающего существа."
 	icon = 'icons/mob/alien.dmi'
 	icon_state = "claw"
 	origin_tech = ""

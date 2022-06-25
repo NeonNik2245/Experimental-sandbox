@@ -39,8 +39,8 @@
  * Resin
  */
 /obj/structure/alien/resin
-	name = "resin"
-	desc = "Looks like some kind of thick resin."
+	name = "смола"
+	desc = "Выглядит как какая-то жирная смола."
 	icon = 'icons/obj/smooth_structures/alien/resin_wall.dmi'
 	icon_state = "resin"
 	density = TRUE
@@ -69,8 +69,8 @@
 	return !density
 
 /obj/structure/alien/resin/wall
-	name = "resin wall"
-	desc = "Thick resin solidified into a wall."
+	name = "смолянистая стена"
+	desc = "Жирная смола, затвердевшая в виде стены."
 	icon = 'icons/obj/smooth_structures/alien/resin_wall.dmi'
 	icon_state = "wall0"	//same as resin, but consistency ho!
 	resintype = "wall"
@@ -80,13 +80,13 @@
 	return 1
 
 /obj/structure/alien/resin/wall/shadowling //For chrysalis
-	name = "chrysalis wall"
-	desc = "Some sort of purple substance in an egglike shape. It pulses and throbs from within and seems impenetrable."
+	name = "яйцевидная стенка"
+	desc = "Какое-то фиолетовое вещество яйцевидной формы. Оно пульсирует изнутри и кажется непроницаемым."
 	max_integrity = INFINITY
 
 /obj/structure/alien/resin/membrane
-	name = "resin membrane"
-	desc = "Resin just thin enough to let light pass through."
+	name = "смолистая мембрана"
+	desc = "Смола достаточно тонкая, чтобы пропускать свет."
 	icon = 'icons/obj/smooth_structures/alien/resin_membrane.dmi'
 	icon_state = "membrane0"
 	opacity = 0
@@ -108,8 +108,8 @@
 
 /obj/structure/alien/weeds
 	gender = PLURAL
-	name = "resin floor"
-	desc = "A thick resin surface covers the floor."
+	name = "смолистый пол"
+	desc = "Жирная смолистая субстанция, покрывающая пол."
 	anchored = TRUE
 	density = FALSE
 	layer = TURF_LAYER
@@ -198,8 +198,8 @@
 
 //Weed nodes
 /obj/structure/alien/weeds/node
-	name = "glowing resin"
-	desc = "Blue bioluminescence shines from beneath the surface."
+	name = "светящаяся смола"
+	desc = "Синеватое свечение исходит из-под поверхности."
 	icon_state = "weednode"
 	light_range = 1
 	var/node_range = NODERANGE
@@ -224,8 +224,8 @@
 #define MAX_GROWTH_TIME 3000
 
 /obj/structure/alien/egg
-	name = "egg"
-	desc = "A large mottled egg."
+	name = "яйцо"
+	desc = "Большое пятнистое яйцо."
 	icon_state = "egg_growing"
 	density = FALSE
 	anchored = TRUE
@@ -258,19 +258,19 @@
 	if(user.get_int_organ(/obj/item/organ/internal/xenos/plasmavessel))
 		switch(status)
 			if(BURST)
-				to_chat(user, "<span class='notice'>You clear the hatched egg.</span>")
+				to_chat(user, "<span class='notice'>Вы уничтожаете вылупившееся яйцо.</span>")
 				playsound(loc, 'sound/effects/attackblob.ogg', 100, 1)
 				qdel(src)
 				return
 			if(GROWING)
-				to_chat(user, "<span class='notice'>The child is not developed yet.</span>")
+				to_chat(user, "<span class='notice'>Ребёнок ещё не развит.</span>")
 				return
 			if(GROWN)
-				to_chat(user, "<span class='notice'>You retrieve the child.</span>")
+				to_chat(user, "<span class='notice'>Вы забираете ребёнка.</span>")
 				Burst(0)
 				return
 	else
-		to_chat(user, "<span class='notice'>It feels slimy.</span>")
+		to_chat(user, "<span class='notice'>Оно ощущается как слизь.</span>")
 		user.changeNext_move(CLICK_CD_MELEE)
 
 

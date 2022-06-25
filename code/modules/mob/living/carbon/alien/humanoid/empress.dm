@@ -1,5 +1,5 @@
 /mob/living/carbon/alien/humanoid/empress
-	name = "alien empress"
+	name = "императрица чужих"
 	caste = "q"
 	maxHealth = 700
 	health = 700
@@ -11,7 +11,7 @@
 	ventcrawler = 0
 
 /mob/living/carbon/alien/humanoid/empress/large
-	name = "alien empress"
+	name = "императрица чужих"
 	caste = "e"
 	icon = 'icons/mob/alienhuge.dmi'
 	icon_state = "empress_s"
@@ -38,7 +38,7 @@
 		if(E.stat == DEAD)
 			continue
 		if(E.client)
-			name = "alien grand princess ([rand(1, 999)])"	//if this is too cutesy feel free to change it/remove it.
+			name = "великая принцесса чужих ([rand(1, 999)])"	//if this is too cutesy feel free to change it/remove it.
 			break
 
 	real_name = name
@@ -50,17 +50,17 @@
 	..()
 
 /mob/living/carbon/alien/humanoid/empress/verb/lay_egg()
-	set name = "Lay Egg (250)"
-	set desc = "Lay an egg to produce huggers to impregnate prey with."
+	set name = "Отложить яйцо (250)"
+	set desc = "Отложить яйцо, чтобы создать лицехвата для оплодотворения жертвы."
 	set category = "Alien"
 
 	if(locate(/obj/structure/alien/egg) in get_turf(src))
-		to_chat(src, "<span class='noticealien'>There's already an egg here.</span>")
+		to_chat(src, "<span class='noticealien'>Здесь уже есть яйцо.</span>")
 		return
 
 	if(powerc(250,1))//Can't plant eggs on spess tiles. That's silly.
 		adjustPlasma(-250)
 		for(var/mob/O in viewers(src, null))
-			O.show_message(text("<span class=notice'><B>[src] has laid an egg!</B></span>"), 1)
+			O.show_message(text("<span class=notice'><B>[src] отложила яйцо!</B></span>"), 1)
 		new /obj/structure/alien/egg(loc)
 	return

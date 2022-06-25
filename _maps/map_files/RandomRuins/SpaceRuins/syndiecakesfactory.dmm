@@ -271,11 +271,11 @@
 /mob/living/simple_animal/hostile/alien/sentinel{
 	animal_species = /mob/living/simple_animal/pet/dog;
 	attack_sound = 'sound/weapons/bite.ogg';
-	attacktext = "bites";
+	attacktext = "кусает";
 	damage_coeff = list("brute" = 1, "fire" = 1, "tox" = 1, "clone" = 1, "stamina" = 1, "oxy" = 1);
 	death_sound = null;
 	deathmessage = "";
-	desc = "This is no longer a goodboy. Not anymore. He has seen too much.";
+	desc = "Он больше не хороший мальчик. Больше нет. Он видел слишком много.";
 	icon = 'icons/mob/pets.dmi';
 	icon_living = "corgi";
 	icon_state = "corgi";

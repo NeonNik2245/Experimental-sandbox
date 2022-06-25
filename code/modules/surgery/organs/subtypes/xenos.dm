@@ -24,7 +24,7 @@
 //XENOMORPH ORGANS
 
 /obj/item/organ/internal/xenos/plasmavessel
-	name = "xeno plasma vessel"
+	name = "сосуд ксеноплазмы"
 	icon_state = "plasma"
 	w_class = WEIGHT_CLASS_NORMAL
 	origin_tech = "biotech=5;plasmatech=4"
@@ -44,7 +44,7 @@
 	return S
 
 /obj/item/organ/internal/xenos/plasmavessel/queen
-	name = "bloated xeno plasma vessel"
+	name = "раздутый сосуд ксеноплазмы"
 	icon_state = "plasma_large"
 	origin_tech = "biotech=6;plasmatech=4"
 	stored_plasma = 200
@@ -52,7 +52,7 @@
 	plasma_rate = 25
 
 /obj/item/organ/internal/xenos/plasmavessel/drone
-	name = "large xeno plasma vessel"
+	name = "большой сосуд ксеноплазмы"
 	icon_state = "plasma_large"
 	stored_plasma = 200
 	max_plasma = 500
@@ -62,14 +62,14 @@
 	max_plasma = 250
 
 /obj/item/organ/internal/xenos/plasmavessel/hunter
-	name = "small xeno plasma vessel"
+	name = "маленький сосуд ксеноплазмы"
 	icon_state = "plasma_tiny"
 	stored_plasma = 100
 	max_plasma = 150
 	alien_powers = list(/mob/living/carbon/alien/humanoid/verb/plant)
 
 /obj/item/organ/internal/xenos/plasmavessel/larva
-	name = "tiny xeno plasma vessel"
+	name = "крошечный сосуд ксеноплазмы"
 	icon_state = "plasma_tiny"
 	max_plasma = 100
 
@@ -103,7 +103,7 @@
 
 
 /obj/item/organ/internal/xenos/acidgland
-	name = "xeno acid gland"
+	name = "кислотная железа"
 	icon_state = "acid"
 	parent_organ = "head"
 	slot = "acid"
@@ -112,7 +112,7 @@
 
 
 /obj/item/organ/internal/xenos/hivenode
-	name = "xeno hive node"
+	name = "ксеноузел улья"
 	icon_state = "hivenode"
 	parent_organ = "head"
 	slot = "hivenode"
@@ -133,7 +133,7 @@
 	. = ..()
 
 /obj/item/organ/internal/xenos/neurotoxin
-	name = "xeno neurotoxin gland"
+	name = "железа нейротоксина"
 	icon_state = "neurotox"
 	parent_organ = "head"
 	slot = "neurotox"
@@ -141,7 +141,7 @@
 	alien_powers = list(/mob/living/carbon/alien/humanoid/proc/neurotoxin)
 
 /obj/item/organ/internal/xenos/resinspinner
-	name = "xeno resin organ"//...there tiger....
+	name = "ксеносмоляная железа"//...there tiger....
 	parent_organ = "mouth"
 	icon_state = "liver-x"
 	slot = "spinner"
@@ -149,7 +149,7 @@
 	alien_powers = list(/mob/living/carbon/alien/humanoid/proc/resin)
 
 /obj/item/organ/internal/xenos/eggsac
-	name = "xeno egg sac"
+	name = "ксеномешок для яиц"
 	icon_state = "eggsac"
 	parent_organ = "groin"
 	slot = "eggsac"

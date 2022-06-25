@@ -84,8 +84,8 @@
 	foodtype = GRAIN | GROSS
 
 /obj/item/reagent_containers/food/snacks/xenoburger
-	name = "xenoburger"
-	desc = "Smells caustic and tastes like heresy."
+	name = "ксенбургер"
+	desc = "Пахнет едко, а на вкус как ересь."
 	icon_state = "xburger"
 	filling_color = "#43DE18"
 	bitesize = 3

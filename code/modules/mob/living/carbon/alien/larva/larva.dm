@@ -1,6 +1,6 @@
 /mob/living/carbon/alien/larva
-	name = "alien larva"
-	real_name = "alien larva"
+	name = "личинка чужих"
+	real_name = "личинка чужих"
 	icon_state = "larva0"
 	pass_flags = PASSTABLE | PASSMOB
 	mob_size = MOB_SIZE_SMALL
@@ -12,13 +12,13 @@
 	var/amount_grown = 0
 	var/max_grown = 200
 	var/time_of_birth
-	death_message = "lets out a waning high-pitched cry."
+	death_message = "издаёт угасающий пронзительный крик"
 	death_sound = null
 
 //This is fine right now, if we're adding organ specific damage this needs to be updated
 /mob/living/carbon/alien/larva/New()
-	if(name == "alien larva")
-		name = "alien larva ([rand(1, 1000)])"
+	if(name == "личинка чужих")
+		name = "личинка чужих ([rand(1, 999)])"
 	real_name = name
 	regenerate_icons()
 	add_language("Xenomorph")
@@ -29,7 +29,7 @@
 //This needs to be fixed
 /mob/living/carbon/alien/larva/Stat()
 	..()
-	stat(null, "Progress: [amount_grown]/[max_grown]")
+	stat(null, "Рост: [amount_grown]/[max_grown]")
 
 /mob/living/carbon/alien/larva/adjustPlasma(amount)
 	if(stat != DEAD && amount > 0)

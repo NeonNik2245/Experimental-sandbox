@@ -108,7 +108,7 @@
 
 /obj/item/reagent_containers/food/snacks/monstermeat/xenomeat
 	name = "meat"
-	desc = "A slab of meat. It's green!"
+	desc = "Кусок мяса. Он зелёный!"
 	icon_state = "xenomeat"
 	filling_color = "#43DE18"
 	bitesize = 6

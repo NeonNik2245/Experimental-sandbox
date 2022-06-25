@@ -131,20 +131,20 @@
 	for(var/t in bodyparts)
 		qdel(t)
 
-	var/alien_caste = pick("Hunter","Sentinel","Drone")
+	var/alien_caste = pick("Охотник","Дозорный","Трутень")
 	var/mob/living/carbon/alien/humanoid/new_xeno
 	switch(alien_caste)
-		if("Hunter")
+		if("Охотник")
 			new_xeno = new /mob/living/carbon/alien/humanoid/hunter(loc)
-		if("Sentinel")
+		if("Дозорный")
 			new_xeno = new /mob/living/carbon/alien/humanoid/sentinel(loc)
-		if("Drone")
+		if("Трутень")
 			new_xeno = new /mob/living/carbon/alien/humanoid/drone(loc)
 
 	new_xeno.a_intent = INTENT_HARM
 	new_xeno.key = key
 
-	to_chat(new_xeno, "<B>You are now an alien.</B>")
+	to_chat(new_xeno, "<B>Теперь вы чужой.</B>")
 	new_xeno.update_pipe_vision()
 	qdel(src)
 

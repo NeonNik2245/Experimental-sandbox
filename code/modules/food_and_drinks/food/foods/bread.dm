@@ -23,8 +23,8 @@
 	foodtype = GRAIN | MEAT
 
 /obj/item/reagent_containers/food/snacks/sliceable/xenomeatbread
-	name = "xenomeatbread loaf"
-	desc = "The culinary base of every self-respecting eloquent gentleman. Extra Heretical."
+	name = "буханка ксенохлеба"
+	desc = "Кулинарная основа каждого уважающего себя красноречивого джентльмена. Экстра еретический."
 	icon_state = "xenomeatbread"
 	slice_path = /obj/item/reagent_containers/food/snacks/xenomeatbreadslice
 	slices_num = 5
@@ -34,8 +34,8 @@
 	foodtype = GRAIN | MEAT
 
 /obj/item/reagent_containers/food/snacks/xenomeatbreadslice
-	name = "xenomeatbread slice"
-	desc = "A slice of delicious meatbread. Extra Heretical."
+	name = "ломоть ксенохлеба"
+	desc = "Ломтик изысканного мясного хлеба. Экстра еретический."
 	icon_state = "xenobreadslice"
 	trash = /obj/item/trash/plate
 	filling_color = "#8AFF75"

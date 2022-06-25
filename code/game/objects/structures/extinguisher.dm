@@ -101,7 +101,7 @@
 
 /obj/structure/extinguisher_cabinet/attack_hand(mob/user)
 	if(isrobot(user) || isalien(user))
-		to_chat(user, "<span class='notice'>You don't have the dexterity to do this!</span>")
+		to_chat(user, "<span class='notice'>У тебя не хватает ловкости, что бы сделать это!</span>")
 		return
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user

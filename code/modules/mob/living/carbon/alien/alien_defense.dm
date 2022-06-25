@@ -27,11 +27,11 @@ In all, this is a lot like the monkey code. /N
 				M.do_attack_animation(src, ATTACK_EFFECT_BITE)
 				playsound(loc, 'sound/weapons/bite.ogg', 50, 1, -1)
 				visible_message("<span class='danger'>[M.name] bites [src]!</span>", \
-						"<span class='userdanger'>[M.name] bites [src]!</span>")
+						"<span class='userdanger'>[M.name] кусает [src]!</span>")
 				adjustBruteLoss(1)
 				add_attack_logs(M, src, "Alien attack", ATKLOG_ALL)
 			else
-				to_chat(M, "<span class='warning'>[name] is too injured for that.</span>")
+				to_chat(M, "<span class='warning'>[name] слишком травмирован для этого.</span>")
 
 /mob/living/carbon/alien/attack_larva(mob/living/carbon/alien/larva/L)
 	return attack_alien(L)

@@ -150,9 +150,9 @@
 	icon_state = "weeds2"
 	},
 /obj/structure/alien/weeds{
-	desc = "A large mottled egg.";
+	desc = "Большое пятнистое яйцо.";
 	icon_state = "egg_hatched";
-	name = "egg"
+	name = "яйцо"
 	},
 /turf/simulated/floor/plating/asteroid/airless,
 /area/awaycontent/a5{

@@ -1078,7 +1078,7 @@
 /obj/structure/alien/weeds,
 /obj/effect/decal/cleanable/blood/tracks{
 	color = "red";
-	desc = "Your instincts say you shouldn't be following these.";
+	desc = "Инстинкты подсказывают, что не стоит идти сюда.";
 	icon = 'icons/effects/blood.dmi';
 	icon_state = "tracks"
 	},
@@ -3459,7 +3459,7 @@
 /obj/structure/alien/weeds,
 /obj/effect/decal/cleanable/blood/tracks{
 	color = "red";
-	desc = "Your instincts say you shouldn't be following these.";
+	desc = "Инстинкты подсказывают, что не стоит идти сюда.";
 	dir = 6;
 	icon = 'icons/effects/blood.dmi';
 	icon_state = "tracks"
@@ -16862,7 +16862,7 @@
 	},
 /obj/effect/decal/cleanable/blood/tracks{
 	color = "red";
-	desc = "Your instincts say you shouldn't be following these.";
+	desc = "Инстинкты подсказывают, что не стоит идти сюда.";
 	icon = 'icons/effects/blood.dmi';
 	icon_state = "tracks"
 	},
@@ -16977,7 +16977,7 @@
 	},
 /obj/effect/decal/cleanable/blood/tracks{
 	color = "red";
-	desc = "Your instincts say you shouldn't be following these.";
+	desc = "Инстинкты подсказывают, что не стоит идти по следам.";
 	icon = 'icons/effects/blood.dmi';
 	icon_state = "tracks"
 	},
@@ -17027,7 +17027,7 @@
 	},
 /obj/effect/decal/cleanable/blood/tracks{
 	color = "red";
-	desc = "Your instincts say you shouldn't be following these.";
+	desc = "Инстинкты подсказывают, что не стоит идти за следами.";
 	dir = 4;
 	icon = 'icons/effects/blood.dmi';
 	icon_state = "tracks"
@@ -17046,7 +17046,7 @@
 /obj/structure/alien/weeds,
 /obj/effect/decal/cleanable/blood/tracks{
 	color = "red";
-	desc = "Your instincts say you shouldn't be following these.";
+	desc = "Инстинкты подсказывают, что не стоит идти сюда.";
 	dir = 5;
 	icon = 'icons/effects/blood.dmi';
 	icon_state = "tracks"

@@ -1,12 +1,12 @@
 /mob/living/carbon/alien/humanoid/sentinel
-	name = "alien sentinel"
+	name = "дозорный чужих"
 	caste = "s"
 	maxHealth = 150
 	health = 150
 	icon_state = "aliens_s"
 
 /mob/living/carbon/alien/humanoid/sentinel/large
-	name = "alien praetorian"
+	name = "преторианец чужих"
 	icon = 'icons/mob/alienlarge.dmi'
 	icon_state = "prat_s"
 	pixel_x = -16
@@ -15,7 +15,7 @@
 	large = 1
 
 /mob/living/carbon/alien/humanoid/sentinel/praetorian
-	name = "alien praetorian"
+	name = "преторианец чужих"
 	maxHealth = 200
 	health = 200
 	large = 1
@@ -33,8 +33,8 @@
 		overlays += I
 
 /mob/living/carbon/alien/humanoid/sentinel/New()
-	if(name == "alien sentinel")
-		name = text("alien sentinel ([rand(1, 1000)])")
+	if(name == "дозорный чужих")
+		name = text("дозорный чужих ([rand(1, 999)])")
 	real_name = name
 	alien_organs += new /obj/item/organ/internal/xenos/plasmavessel
 	alien_organs += new /obj/item/organ/internal/xenos/acidgland
