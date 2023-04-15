@@ -1,6 +1,6 @@
 // tgstation-server DMAPI
 
-#define TGS_DMAPI_VERSION "5.2.10"
+#define TGS_DMAPI_VERSION "6.3.1"
 
 // All functions and datums outside this document are subject to change with any version and should not be relied on.
 
@@ -95,8 +95,15 @@
 #define TGS_EVENT_WATCHDOG_SHUTDOWN 15
 /// Before the watchdog detaches for a TGS update/restart. No parameters.
 #define TGS_EVENT_WATCHDOG_DETACH 16
-// We don't actually implement this value as the DMAPI can never receive it
+// We don't actually implement these 4 events as the DMAPI can never receive them.
 // #define TGS_EVENT_WATCHDOG_LAUNCH 17
+// #define TGS_EVENT_WATCHDOG_CRASH 18
+// #define TGS_EVENT_WORLD_END_PROCESS 19
+// #define TGS_EVENT_WORLD_REBOOT 20
+/// Watchdog event when TgsInitializationComplete() is called. No parameters.
+#define TGS_EVENT_WORLD_PRIME 21
+// DMAPI also doesnt implement this
+// #define TGS_EVENT_DREAM_DAEMON_LAUNCH 22
 
 // OTHER ENUMS
 
@@ -130,7 +137,6 @@
  *
  * This may use [/world/var/sleep_offline] to make this happen so ensure no changes are made to it while this call is running.
  * Afterwards, consider explicitly setting it to what you want to avoid this BYOND bug: http://www.byond.com/forum/post/2575184
- * Before this point, note that any static files or directories may be in use by another server. Your code should account for this.
  * This function should not be called before ..() in [/world/proc/New].
  */
 /world/proc/TgsInitializationComplete()
@@ -140,7 +146,7 @@
 #define TGS_TOPIC var/tgs_topic_return = TgsTopic(args[1]); if(tgs_topic_return) return tgs_topic_return
 
 /**
- * Call this at the beginning of [world/proc/Reboot].
+ * Call this as late as possible in [world/proc/Reboot].
  */
 /world/proc/TgsReboot()
 	return
@@ -152,6 +158,8 @@
 /datum/tgs_revision_information
 	/// Full SHA of the commit.
 	var/commit
+	/// ISO 8601 timestamp of when the commit was created
+	var/timestamp
 	/// Full sha of last known remote commit. This may be null if the TGS repository is not currently tracking a remote branch.
 	var/origin_commit
 
@@ -201,9 +209,7 @@
 	/// An http URL to the test merge source.
 	var/url
 	/// The SHA of the test merge when that was merged.
-	var/pull_request_commit
-	/// ISO 8601 timestamp of when the test merge was created on TGS.
-	var/time_merged
+	var/head_commit
 	/// Optional comment left by the TGS user who initiated the merge.
 	var/comment
 
@@ -221,6 +227,8 @@
 	var/is_private_channel
 	/// Tag string associated with the channel in TGS
 	var/custom_tag
+	/// [TRUE]/[FALSE] if the channel supports embeds
+	var/embeds_supported
 
 // Represents a chat user
 /datum/tgs_chat_user
@@ -250,9 +258,11 @@
 	var/help_text = ""
 	/// If this command should be available to game administrators only
 	var/admin_only = FALSE
+	/// A subtype of [/datum/tgs_chat_command] that is ignored when enumerating available commands. Use this to create shared base /datums for commands.
+	var/ignore_type
 
 /**
- * Process command activation. Should return a string to respond to the issuer with.
+ * Process command activation. Should return a [/datum/tgs_message_content] to respond to the issuer with.
  *
  * sender - The [/datum/tgs_chat_user] who issued the command.
  * params - The trimmed string following the command `/datum/tgs_chat_command/var/name].
@@ -260,14 +270,115 @@
 /datum/tgs_chat_command/proc/Run(datum/tgs_chat_user/sender, params)
 	CRASH("[type] has no implementation for Run()")
 
+/// User definable chat message
+/datum/tgs_message_content
+	/// The tring content of the message. Must be provided in New().
+	var/text
+
+	/// The [/datum/tgs_chat_embed] to embed in the message. Not supported on all chat providers.
+	var/datum/tgs_chat_embed/structure/embed
+
+/datum/tgs_message_content/New(text)
+	if(!istext(text))
+		TGS_ERROR_LOG("[/datum/tgs_message_content] created with no text!")
+		text = null
+
+	src.text = text
+
+/// User definable chat embed. Currently mirrors Discord chat embeds. See https://discord.com/developers/docs/resources/channel#embed-object-embed-structure for details.
+/datum/tgs_chat_embed/structure
+	var/title
+	var/description
+	var/url
+
+	/// Timestamp must be encoded as: time2text(world.timeofday, "YYYY-MM-DD hh:mm:ss"). Use the active timezone.
+	var/timestamp
+
+	/// Colour must be #AARRGGBB or #RRGGBB hex string
+	var/colour
+
+	/// See https://discord.com/developers/docs/resources/channel#embed-object-embed-image-structure for details.
+	var/datum/tgs_chat_embed/media/image
+
+	/// See https://discord.com/developers/docs/resources/channel#embed-object-embed-thumbnail-structure for details.
+	var/datum/tgs_chat_embed/media/thumbnail
+
+	/// See https://discord.com/developers/docs/resources/channel#embed-object-embed-image-structure for details.
+	var/datum/tgs_chat_embed/media/video
+
+	var/datum/tgs_chat_embed/footer/footer
+	var/datum/tgs_chat_embed/provider/provider
+	var/datum/tgs_chat_embed/provider/author/author
+
+	var/list/datum/tgs_chat_embed/field/fields
+
+/// Common datum for similar discord embed medias
+/datum/tgs_chat_embed/media
+	/// Must be set in New().
+	var/url
+	var/width
+	var/height
+	var/proxy_url
+
+/datum/tgs_chat_embed/media/New(url)
+	if(!istext(url))
+		CRASH("[/datum/tgs_chat_embed/media] created with no url!")
+
+	src.url = url
+
+/// See https://discord.com/developers/docs/resources/channel#embed-object-embed-footer-structure for details.
+/datum/tgs_chat_embed/footer
+	/// Must be set in New().
+	var/text
+	var/icon_url
+	var/proxy_icon_url
+
+/datum/tgs_chat_embed/footer/New(text)
+	if(!istext(text))
+		CRASH("[/datum/tgs_chat_embed/footer] created with no text!")
+
+	src.text = text
+
+/// See https://discord.com/developers/docs/resources/channel#embed-object-embed-provider-structure for details.
+/datum/tgs_chat_embed/provider
+	var/name
+	var/url
+
+/// See https://discord.com/developers/docs/resources/channel#embed-object-embed-author-structure for details. Must have name set in New().
+/datum/tgs_chat_embed/provider/author
+	var/icon_url
+	var/proxy_icon_url
+
+/datum/tgs_chat_embed/provider/author/New(name)
+	if(!istext(name))
+		CRASH("[/datum/tgs_chat_embed/provider/author] created with no name!")
+
+	src.name = name
+
+/// See https://discord.com/developers/docs/resources/channel#embed-object-embed-field-structure for details. Must have name and value set in New().
+/datum/tgs_chat_embed/field
+	var/name
+	var/value
+	var/is_inline
+
+/datum/tgs_chat_embed/field/New(name, value)
+	if(!istext(name))
+		CRASH("[/datum/tgs_chat_embed/field] created with no name!")
+
+	if(!istext(value))
+		CRASH("[/datum/tgs_chat_embed/field] created with no value!")
+
+	src.name = name
+	src.value = value
+
 // API FUNCTIONS
 
 /// Returns the maximum supported [/datum/tgs_version] of the DMAPI.
-/world/proc/TgsMaximumAPIVersion()
+/world/proc/TgsMaximumApiVersion()
 	return
 
 /// Returns the minimum supported [/datum/tgs_version] of the DMAPI.
-/world/proc/TgsMinimumAPIVersion()
+/world/proc/TgsMinimumApiVersion()
 	return
 
 /**
@@ -290,19 +401,19 @@
 /**
  * Send a message to connected chats.
  *
- * message - The string to send.
+ * message - The [/datum/tgs_message_content] to send.
  * admin_only: If [TRUE], message will be sent to admin connected chats. Vice-versa applies.
  */
-/world/proc/TgsTargetedChatBroadcast(message, admin_only = FALSE)
+/world/proc/TgsTargetedChatBroadcast(datum/tgs_message_content/message, admin_only = FALSE)
 	return
 
 /**
  * Send a private message to a specific user.
  *
- * message - The string to send.
+ * message - The [/datum/tgs_message_content] to send.
  * user: The [/datum/tgs_chat_user] to PM.
  */
-/world/proc/TgsChatPrivateMessage(message, datum/tgs_chat_user/user)
+/world/proc/TgsChatPrivateMessage(datum/tgs_message_content/message, datum/tgs_chat_user/user)
 	return
 
 // The following functions will sleep if a call to TgsNew() is sleeping
@@ -310,10 +421,10 @@
 /**
  * Send a message to connected chats that are flagged as game-related in TGS.
  *
- * message - The string to send.
+ * message - The [/datum/tgs_message_content] to send.
  * channels - Optional list of [/datum/tgs_chat_channel]s to restrict the message to.
  */
-/world/proc/TgsChatBroadcast(message, list/channels = null)
+/world/proc/TgsChatBroadcast(datum/tgs_message_content/message, list/channels = null)
 	return
 
 /// Returns the current [/datum/tgs_version] of TGS if it is running the server, null otherwise.
